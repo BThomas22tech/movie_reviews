@@ -13,5 +13,5 @@ Rails.application.routes.draw do
   # root "posts#index"
 
 get "/movies", to: "movies#index"
-
+get "/movies/:id", to: "movies#show"
 end
