@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "reviews/new"
+  get "reviews/edit"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -11,6 +13,10 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  resources :movies do
+    resources :reviews, only: [:new, :create, :edit, :update, :destroy]
+  end
 
 get "/movies", to: "movies#index"
 get "/movies/:id", to: "movies#show"

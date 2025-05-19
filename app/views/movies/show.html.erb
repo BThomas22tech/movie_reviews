@@ -1,7 +1,17 @@
-<h1> Movies </h1>
+<h1> Movie Reviews for <%=@movie.title%></h1>
 
-<ul>
+<% if @movie.reviews.any? %>
 
- <li><%= "#{@movie.title} #{@movie.year}" %></li>
+  <ul>
+    <% @movie.reviews.each do |review| %>
+      <li>
+        <strong>Rating:</strong> <%= review.rating %>/10 <br>
+        <strong>Comment:</strong> <%= review.comment %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No reviews yet for this movie.</p>
+<% end %>
 
-</ul>
+<%= link_to 'Add Review', new_movie_review_path(@movie) %>
